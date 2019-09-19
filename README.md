@@ -1,2 +1,2 @@
 # Bruteforce-Crossword
-ez crossword ever
+eziest crossword ever
