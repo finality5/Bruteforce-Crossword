@@ -1,14 +1,14 @@
 import cv2
 import time
 import pyautogui
-import numpy as np
+from numpy import array
 
 # string of alphabet ordered which frequenly used .
 alp = "aeioulnstrdgbcmpfhvwykjxqz"
 
 # red color .
-lower = np.array([0, 0, 200])
-upper = np.array([127, 127,255])
+lower = array([0, 0, 200])
+upper = array([127, 127,255])
 
 time.sleep(2)
 
@@ -17,13 +17,12 @@ for i in range(15*15):
     pyautogui.press('a')
 
 # replace wrong slots with new alphabet .
-for i in range(1,len(alp)):
+for i in range(1, len(alp)):
 
     img = pyautogui.screenshot('img.png')
     img = cv2.imread('img.png')
     # img = cv2.resize(img,None,fx=0.5,fy=0.5)
 
-    result = img.copy()
     mask = cv2.inRange(img, lower, upper)
 
     _, contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
@@ -32,6 +31,3 @@ for i in range(1,len(alp)):
         x, y = center
         pyautogui.click(int(x), int(y))
         pyautogui.press(alp[i])
-
-      
-
