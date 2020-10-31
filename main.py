@@ -1,6 +1,6 @@
 import cv2
 import time
-import pyautogui
+from pyautogui import press, screenshot, click
 from numpy import array
 # pip install progressbar2
 import progressbar
@@ -17,14 +17,14 @@ time.sleep(2)
 bar = progressbar.ProgressBar(max_value=len(alp))
 # initial alphabet 'A' into 15*15table .
 for i in range(15*15):
-    pyautogui.press('a')
+    press('a')
     bar.update(i)
 bar.update(0)
 
 # replace wrong slots with new alphabet .
 for i in range(1, len(alp)):
 
-    img = pyautogui.screenshot('img.png')
+    img = screenshot('img.png')
     img = cv2.imread('img.png')
     # img = cv2.resize(img,None,fx=0.5,fy=0.5)
 
@@ -34,8 +34,8 @@ for i in range(1, len(alp)):
     for cnt in contours :
         center, _, _ = cv2.minAreaRect(cnt)
         x, y = center
-        pyautogui.click(int(x), int(y))
-        pyautogui.press(alp[i])
+        click(int(x), int(y))
+        press(alp[i])
     bar.update(i)
 
       
